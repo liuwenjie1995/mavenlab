@@ -15,4 +15,14 @@ public class LinkController {
 
     @RequestMapping("/stuupload2")
     public String stuupload2(){return "/student/uploadpic";}
+    @RequestMapping("/")
+    public String welcome() {
+        return "welcome";
+    }
+    @RequestMapping("/login")
+    public String Login()
+    {
+        return "login";
+    }
+
 }

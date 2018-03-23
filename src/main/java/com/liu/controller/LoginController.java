@@ -22,12 +22,6 @@ public class LoginController{
         return "/main/main";
     }
 
-    @RequestMapping("/login")
-    public String Login()
-    {
-        return "login";
-    }
-
     @RequestMapping("/login.do")
     public String judge(String userid, String password, HttpSession httpsession)
     {
