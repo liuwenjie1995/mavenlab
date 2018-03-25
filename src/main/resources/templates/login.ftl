@@ -212,8 +212,8 @@
     <div class="container">
         <h1>小树莓，欢迎回家</h1>
         <form id="loginform" name="loginform">
-            <input  name="userid" type="text" placeholder="您的用户名"/>
-            <input name="password" type="password" placeholder="您的密码"/>
+            <input id="userid" name="userid" type="text" placeholder="您的用户名"/>
+            <input id="password" name="password" type="password" placeholder="您的密码"/>
             <input id="user_submit" type="submit" value="登陆"/>
         </form>
     </div>
@@ -230,45 +230,32 @@
         <li></li>
     </ul>
 </div>
-<script src="/static/bootstrap/js/jquery-3.3.1.min.js"/>
+<script src="/static/bootstrap/js/jquery-3.3.1.js"></script>
 <script language="JavaScript">
     $(document).ready(
-        $("#user_submit").onclick(
-           function check() {
-               alert("jquery in using");
-               var name = $("#userid").val();
-               var password = $("#password").val();
-               if (name==null)
-               {
-                   alert("用户名不能为空")
-               }
-               else if(password==null)
-               {
-                   alert("密码不能为空")
-               }
-               else
-               {
-                   $.ajax({
-                       type:"post",
-                       url:"/logincheck",
-                       data:{
-                           username:userid,
-                           password:password
-                       },
-                       success:function (data) {
-                           if(data.status==1)
-                           {
-                               alert("登陆完成");
-                           }
-                           else
-                           {
-                               alert("用户名或密码错误");
-                           }
-                       }
-                   })
-               }
-           )
-           }
+        $("#user_submit").click(
+                function () {
+                    var u = $("#userid").val();
+                    var p = $("#password").val();
+                    if(u==null)
+                    {
+                        alert("no username");
+                    }
+                    else if(p==null)
+                    {
+                        alert("no password");
+                    }
+                    else
+                    {
+                        $.ajax(
+                                {
+                                    url:"/logincheck",
+                                    method:"POST",
+                                }
+                        )
+                    }
+                }
+    )
     )
 </script>
 </body>
