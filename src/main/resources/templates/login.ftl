@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
 
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <title>登陆数字媒体专业账号</title>
 
     <style type="text/css">
@@ -232,16 +232,16 @@
     </ul>
 </div>
 
-<script type="javascript">
+<script type="text/javascript">
     $(document).ready(
         $("#user_submit").click(
             function () {
-                var u = $("#userid").val()
-                var p = $("#password").val()
+                var u = $.trim($("#userid").val());
+                var p = $.trim($("#password").val());
 
-                if(u==null)
+                if(u=="")
                 {alert("no username")}
-                else if(p==null)
+                else if(p=="")
                 {alert("no password")}
                 else
                 {
@@ -249,12 +249,12 @@
                     $.ajax({
                         type:"post",
                         url:"/login.do",
+                        dataType:"json",
                         data:
                                 {
                                     userid:u,
                                     password:p
-                                }
-                        datatype:"json",
+                                },
                         success:function (data) {
                             if(1==data["data"]["status"])
                             {
@@ -264,7 +264,7 @@
                                 alert("用户名或密码错误");
                             }
 
-                        }
+                        },
                         error:function (data) {
                             alert("服务器断档了");
                         }

@@ -37,15 +37,19 @@ public class LoginController{
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param, HttpSession httpSession, HttpServletRequest request)
     {
-            /*
-            * todo 这里使用httpservlet 获取文件
-            * */
-//        request.getParameter("userid");
 
         String userid =(String)param.get("userid");
         String password= (String)param.get("password");
 
-        return new NorResponse<>(1, new LoginStatus(1));
+        if (userService.getuser(userid,password))
+        {
+            //返回json,登录成功
+            return new NorResponse<>(1, new LoginStatus(1));
+        }
+        else
+        {
+            return new NorResponse<>(1,new LoginStatus(0));
+        }
 
     }
 

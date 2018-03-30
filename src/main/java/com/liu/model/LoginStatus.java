@@ -5,9 +5,7 @@ public class LoginStatus {
 
     @Override
     public String toString() {
-        return "LoginStatus{" +
-                "status=" + status +
-                '}';
+        return "LoginStatus{" +  "status=" + status + '}';
     }
 
     public int getStatus() {
