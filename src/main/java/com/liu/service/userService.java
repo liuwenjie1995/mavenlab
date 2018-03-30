@@ -7,5 +7,6 @@ import javax.servlet.http.HttpSession;
 
 public interface userService {
     public void logoutuser(HttpSession httpSession);
+    @Autowired
     public boolean getuser(String username,String password);
 }

@@ -1,18 +1,29 @@
 package com.liu.controller;
 
+import com.liu.model.LoginStatus;
+import com.liu.model.NorResponse;
 import com.liu.service.Imp.userServiceImp;
 import com.liu.service.userService;
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @PropertySource("classpath:global.properties")
 @Controller
 public class LoginController{
 
+    @Autowired
     private userService userService;
 
     @RequestMapping("/logout")
@@ -22,28 +33,20 @@ public class LoginController{
         return "/main/main";
     }
 
-    @RequestMapping("/login.do")
-    public String judge(String userid, String password, HttpSession httpsession)
+    @ResponseBody
+    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
+    public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param, HttpSession httpSession, HttpServletRequest request)
     {
-        System.out.print("this is in use");
-        int flag=0;
-        try {
-            if (userid.equals("liu") && password.equals("123"))
-            {
-                flag=1;
-                //getusername
-                String username = "刘文杰";
-                httpsession.setAttribute("welcomeuser","欢迎您，"+username);
-                httpsession.setAttribute("isTeacher","1");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        switch (flag){
-            case 1:return "/main/main";
-            case 0:return "login/fail";
-            default:return "login/fail";
-        }
+            /*
+            * todo 这里使用httpservlet 获取文件
+            * */
+//        request.getParameter("userid");
+
+        String userid =(String)param.get("userid");
+        String password= (String)param.get("password");
+
+        return new NorResponse<>(1, new LoginStatus(1));
+
     }
 
 }
