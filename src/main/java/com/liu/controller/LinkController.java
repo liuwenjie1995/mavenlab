@@ -2,23 +2,8 @@ package com.liu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Map;
-
 @Controller
 public class LinkController {
-
-    @RequestMapping("/")
-    public String welcome() {
-        return "welcome";
-    }
-
-    @RequestMapping("/login")
-    public String Login()
-    {
-        return "login";
-    }
-
     @RequestMapping("/main")
     public String main() { return "main/main"; }
 
@@ -30,5 +15,14 @@ public class LinkController {
 
     @RequestMapping("/stuupload2")
     public String stuupload2(){return "/student/uploadpic";}
+    @RequestMapping("/")
+    public String welcome() {
+        return "welcome";
+    }
+    @RequestMapping("/login")
+    public String Login()
+    {
+        return "login";
+    }
 
 }

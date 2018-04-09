@@ -1,5 +1,6 @@
 package com.liu.service;
 
 public interface UpImgService {
-    String updateHead(String imgurl) throws Exception;
+    String upHead(String imgurl) throws Exception;
+    String upfile(String fileurl) throws Exception;
 }

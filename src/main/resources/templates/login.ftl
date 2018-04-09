@@ -2,7 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <title>登陆数字媒体专业账号</title>
+
     <style type="text/css">
         * {
             box-sizing: border-box;
@@ -211,11 +214,9 @@
 <div class="wrap">
     <div class="container">
         <h1>小树莓，欢迎回家</h1>
-        <form id="loginform" name="loginform">
             <input id="userid" name="userid" type="text" placeholder="您的用户名"/>
             <input id="password" name="password" type="password" placeholder="您的密码"/>
             <input id="user_submit" type="submit" value="登陆"/>
-        </form>
     </div>
     <ul>
         <li></li>
@@ -230,33 +231,52 @@
         <li></li>
     </ul>
 </div>
-<script src="/static/bootstrap/js/jquery-3.3.1.js"></script>
-<script language="JavaScript">
+
+<script type="text/javascript">
     $(document).ready(
         $("#user_submit").click(
-                function () {
-                    var u = $("#userid").val();
-                    var p = $("#password").val();
-                    if(u==null)
-                    {
-                        alert("no username");
-                    }
-                    else if(p==null)
-                    {
-                        alert("no password");
-                    }
-                    else
-                    {
-                        $.ajax(
+            function () {
+                var u = $.trim($("#userid").val());
+                var p = $.trim($("#password").val());
+
+                if(u=="")
+                {alert("no username")}
+                else if(p=="")
+                {alert("no password")}
+                else
+                {
+                    // ajax post
+                    $.ajax({
+                        type:"post",
+                        url:"/login.do",
+                        dataType:"json",
+                        data:
                                 {
-                                    url:"/logincheck",
-                                    method:"POST",
-                                }
-                        )
-                    }
+                                    userid:u,
+                                    password:p
+                                },
+                        success:function (data) {
+                            if(1==data["data"]["status"])
+                            {
+                                alert("登录成功");
+                            }
+                            else {
+                                alert("用户名或密码错误");
+                            }
+
+                        },
+                        error:function (data) {
+                            alert("服务器断档了");
+                        }
+                    })
                 }
-    )
+
+            }
+
+
+        )
     )
 </script>
+
 </body>
 </html>
