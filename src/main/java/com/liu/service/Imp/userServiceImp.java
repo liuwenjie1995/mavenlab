@@ -17,13 +17,9 @@ public class userServiceImp implements userService {
     @Override
     public boolean getuser(int userid, String password) {
         if (userDao.findUser(userid,password).size()==0)
-        {
             return false;
-        }
         else
-        {
-            return false;
-        }
+            return true;
 
     }
 

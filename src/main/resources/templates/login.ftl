@@ -259,6 +259,7 @@
                             if(1==data["data"]["status"])
                             {
                                 alert("登录成功");
+                                window.location.replace("main");
                             }
                             else {
                                 alert("用户名或密码错误");

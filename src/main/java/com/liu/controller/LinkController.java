@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LinkController {
     @RequestMapping("/main")
-    public String main() { return "main/main"; }
+    public String main() { return "/main/main"; }
 
     @RequestMapping("/scanusers")
     public String scanusers() { return "show/scanusers"; }

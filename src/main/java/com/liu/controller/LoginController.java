@@ -5,8 +5,6 @@ import com.liu.model.NorResponse;
 import com.liu.model.RegiserStatus;
 import com.liu.service.Imp.userServiceImp;
 import com.liu.service.userService;
-import net.sf.json.JSON;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpRequest;
@@ -31,6 +29,9 @@ public class LoginController{
         return "/main/main";
     }
 
+    /*
+    * xxx 登录验证
+    * */
     @ResponseBody
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param)
@@ -55,8 +56,10 @@ public class LoginController{
 
     @ResponseBody
     @RequestMapping()
-    public NorResponse<RegiserStatus> register(@RequestParam Map<String,Object> params)
+    public NorResponse<RegiserStatus> register(@RequestParam Map<String,Object> params,HttpSession session)
     {   int rank = 1;
+
+
         String username = (String)params.get("username");
         String password = (String)params.get("password");
         if(params.get("rank")!=null)
@@ -65,6 +68,8 @@ public class LoginController{
         }
         if(userService.saveuser(username,password,rank))
         {
+            session.setAttribute("username",username);
+            session.setAttribute("rank",rank);
             return new NorResponse<>(1,new RegiserStatus(1));
         }
         else
