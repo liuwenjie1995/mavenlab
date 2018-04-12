@@ -3,6 +3,9 @@ package com.liu.model;
 public class LoginStatus {
     private int status;
 
+    public LoginStatus(int status) {
+        this.status = status;
+    }
     @Override
     public String toString() {
         return "LoginStatus{" +  "status=" + status + '}';
@@ -16,7 +19,4 @@ public class LoginStatus {
         this.status = status;
     }
 
-    public LoginStatus(int status) {
-        this.status = status;
-    }
 }

@@ -3,15 +3,12 @@ package com.liu.controller;
 import com.liu.model.LoginStatus;
 import com.liu.model.NorResponse;
 import com.liu.model.RegiserStatus;
-import com.liu.service.Imp.userServiceImp;
 import com.liu.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -33,7 +30,7 @@ public class LoginController{
     * xxx 登录验证
     * */
     @ResponseBody
-    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do")
     public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param)
     {
 
@@ -55,7 +52,7 @@ public class LoginController{
     }
 
     @ResponseBody
-    @RequestMapping()
+    @RequestMapping("/register.do")
     public NorResponse<RegiserStatus> register(@RequestParam Map<String,Object> params,HttpSession session)
     {   int rank = 1;
 
