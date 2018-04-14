@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="maven_lab:war exploded">
-    <output-path>$PROJECT_DIR$/target/mavenlab-0.0.3-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/mavenlab-0.0.4-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -86,7 +86,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/mavenlab-0.0.3-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/mavenlab-0.0.4-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="maven_lab/web/Web" />
     </root>

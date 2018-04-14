@@ -1,10 +1,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="/static/scanusers/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/static/scanusers/css/demo.css">
-    <link rel="stylesheet" href="/static/scanusers/css/style.css">
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/scanusers/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/scanusers/css/demo.css">
+    <link rel="stylesheet" href="/scanusers/css/style.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
 
     <title>
         主页
@@ -18,7 +18,9 @@
                 <li><a href="/stuupload">上传作品</a> </li>
                 <li><a href="/stuupload2">上传头像</a></li>
                 <li><p>
+                    <#if Session["username"]?exists>
                         欢迎您!${Session["username"]}<br>
+                    </#if>
                 </p></li>
                 <li><a href="/logout">退出</a></li>
             </ul>
