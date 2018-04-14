@@ -4,7 +4,7 @@
   <groupId>com.liu.mavenlab3</groupId>
   <artifactId>mavenlab</artifactId>
   <packaging>war</packaging>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>0.0.4-SNAPSHOT</version>
   <name>mavenlab Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
