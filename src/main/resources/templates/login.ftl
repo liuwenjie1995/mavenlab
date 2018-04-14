@@ -2,8 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
     <title>登陆数字媒体专业账号</title>
 
     <style type="text/css">
@@ -212,11 +212,12 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="container">
+    <div class="container" style="text-align: center;">
         <h1>小树莓，欢迎回家</h1>
             <input id="userid" name="userid" type="text" placeholder="您的用户名"/>
             <input id="password" name="password" type="password" placeholder="您的密码"/>
             <input id="user_submit" type="submit" value="登陆"/>
+            <a href="/register" >用户注册</a>
     </div>
     <ul>
         <li></li>
@@ -256,9 +257,10 @@
                                     password:p
                                 },
                         success:function (data) {
-                            if(1==data["data"]["status"])
+                            if(1===data["data"]["status"])
                             {
                                 alert("登录成功");
+
                                 window.location.replace("main");
                             }
                             else {

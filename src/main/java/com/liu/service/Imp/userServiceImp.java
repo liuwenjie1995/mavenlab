@@ -15,12 +15,14 @@ public class userServiceImp implements userService {
     @Autowired
     private UserDao userDao;
     @Override
-    public boolean getuser(int userid, String password) {
-        if (userDao.findUser(userid,password).size()==0)
-            return false;
-        else
-            return true;
-
+    public User getuser(int userid, String password) {
+        try {
+            User user = userDao.findUser(userid,password).get(0);
+            return user;
+        }catch (IndexOutOfBoundsException e)
+        {
+            return null;
+        }
     }
 
     @Override

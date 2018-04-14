@@ -1,5 +1,6 @@
 package com.liu.controller;
 
+import com.liu.beans.User;
 import com.liu.model.LoginStatus;
 import com.liu.model.NorResponse;
 import com.liu.model.RegiserStatus;
@@ -31,15 +32,18 @@ public class LoginController{
     * */
     @ResponseBody
     @RequestMapping(value = "/login.do")
-    public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param)
+    public NorResponse<LoginStatus> judge(@RequestParam Map<String,Object> param,HttpSession session)
     {
 
         String userid =(String)param.get("userid");
         String password= (String)param.get("password");
+        User user = userService.getuser(Integer.parseInt(userid),password);
 
-
-        if (userService.getuser(Integer.parseInt(userid),password))
+        if (user!=null)
         {
+            session.setAttribute("username",user.getUsername());
+            session.setAttribute("userid",user.getUserid());
+            session.setAttribute("rank",user.getRank());
             //返回json,登录成功
             return new NorResponse<>(1, new LoginStatus(1));
         }
@@ -54,11 +58,12 @@ public class LoginController{
     @ResponseBody
     @RequestMapping("/register.do")
     public NorResponse<RegiserStatus> register(@RequestParam Map<String,Object> params,HttpSession session)
-    {   int rank = 1;
-
+    {
+        int rank = 1;
 
         String username = (String)params.get("username");
         String password = (String)params.get("password");
+        System.out.print("name is : "+username);
         if(params.get("rank")!=null)
         {
             rank = Integer.parseInt((String) params.get("rank"));

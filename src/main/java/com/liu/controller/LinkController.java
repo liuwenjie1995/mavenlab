@@ -30,4 +30,7 @@ public class LinkController {
     {
         return "login";
     }
+
+    @RequestMapping(value = "/register")
+    public String Register(){return "register";}
 }

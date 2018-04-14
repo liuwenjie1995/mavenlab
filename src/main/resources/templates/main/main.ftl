@@ -17,6 +17,9 @@
                 <li><a href="/scanusers">浏览优秀作品</a> </li>
                 <li><a href="/stuupload">上传作品</a> </li>
                 <li><a href="/stuupload2">上传头像</a></li>
+                <li><p>
+                        欢迎您!${Session["username"]}<br>
+                </p></li>
                 <li><a href="/logout">退出</a></li>
             </ul>
         </div>
