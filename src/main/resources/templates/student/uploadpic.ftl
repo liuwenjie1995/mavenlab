@@ -8,8 +8,8 @@
     <title>上传图片，可调图片宽高</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
-    <script src="static/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
+    <script src="/bootstrap/js/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>

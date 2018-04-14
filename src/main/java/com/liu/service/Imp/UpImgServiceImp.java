@@ -1,6 +1,5 @@
 package com.liu.service.Imp;
 
-import com.aliyun.oss.OSSClient;
 import com.liu.service.UpImgService;
 
 public class UpImgServiceImp implements UpImgService {
