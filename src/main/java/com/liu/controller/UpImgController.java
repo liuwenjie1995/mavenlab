@@ -6,11 +6,14 @@ import com.liu.model.UploadStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +29,7 @@ import java.util.UUID;
 public class UpImgController {
 
 
-    @RequestMapping(value = "fileUpload",method = RequestMethod.GET)
+    @RequestMapping(value = "fileUpload.do",method = RequestMethod.GET)
     @ResponseBody
     public NorResponse<String> fileupload(MultipartFile file)
     {
@@ -37,8 +40,8 @@ public class UpImgController {
         int    typeflag = get_flag(filetype);
         String path     = get_filepath(typeflag);
 
-        if(file.isEmpty()&&typeflag==0)
-            return new NorResponse<>(0,"未创建图片文件!",null);
+        if(file.isEmpty()||typeflag==0)
+            return new NorResponse<>(0,"未创建图片或文件!",null);
 
         File dest = new File(path+"stuup"+time+UUID.randomUUID()+"."+filetype);
 
@@ -51,6 +54,29 @@ public class UpImgController {
         }
         else
             return new NorResponse< >(0,"上传文件失败",null);
+    }
+
+    @RequestMapping(value = "/imageupload.do")
+    @ResponseBody
+    public NorResponse<Integer> imgupload(@RequestParam Map<String,Object> params, HttpSession session)
+    {
+        String base64img    = (String) params.get("picture");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time         = df.format(new Date());
+        int    typeflag     = 1;
+        String path         = get_filepath(typeflag);
+
+        File dest = new File(path+"stuup"+time+UUID.randomUUID()+"."+"jpg");
+
+        if(!dest.getParentFile().exists())
+            dest.getParentFile().mkdir();
+
+        if(base64img==null)
+            return new NorResponse<>(1,"上传失败,上传图片不存在",0);
+        else if(!ImgtoFile(base64img,dest.getAbsolutePath()))
+            return new NorResponse<>(1,"上传失败,未存储到服务器",0);
+        else
+            return new NorResponse<>(1,"success",1);
     }
 
     //todo 将上传的文件名放置在数据库中
@@ -102,10 +128,32 @@ public class UpImgController {
         switch (mType)
         {
             case 2:
-                return System.getProperty("user.dir")+"/uploadFile";
+                return System.getProperty("user.dir")+"/uploadFile/";
             case 1:
-                return System.getProperty("user.dir")+"/uploadImage";
+                return System.getProperty("user.dir")+"/uploadImage/";
             default:return null;
+        }
+    }
+
+    public boolean ImgtoFile(String imgstr,String imgFilePath)
+    {
+        try{
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] b = decoder.decodeBuffer(imgstr.split(",")[1]);
+            for (int i=0;i<b.length;++i)
+            {
+                if(b[i]<0)
+                    b[i]+=256;
+            }
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(b);
+            out.flush();
+            out.close();
+            return true;
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
         }
     }
 }
