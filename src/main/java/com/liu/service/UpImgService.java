@@ -1,6 +1,8 @@
 package com.liu.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface UpImgService {
-    String upHead(String imgurl) throws Exception;
-    String upfile(String fileurl) throws Exception;
+    boolean upimage(String imgstr);
+    String  upload_file(MultipartFile file);
 }
