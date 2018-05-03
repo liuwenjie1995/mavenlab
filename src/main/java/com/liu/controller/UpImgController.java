@@ -103,7 +103,7 @@ public class UpImgController {
 
         return new NorResponse<>(0,"保存数据库失败",null);
         }
-        return new NorResponse<>(0,"保存数据库成功",null);
+        return new NorResponse<>(0,"保存数据库成功","1");
     }
 
 }

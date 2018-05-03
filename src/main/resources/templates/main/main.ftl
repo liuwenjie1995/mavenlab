@@ -67,8 +67,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">艺术作品 <span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="/scanusers" data-hover="展示才华">优秀作品展示</a></li>
+                                            <#if Session["userid"]?exists>
 											<li><a href="/stuupload" data-hover="发挥特色">优秀作品上传</a></li>
+                                            <#elseif Session["rank"]?exists&&Session["rank"]==2>
 											<li><a href="/judge" data-hover="发掘人才">作品审核</a></li>
+                                            </#if>
 										</ul>
 									</li> 
 									<li><a href=" data-hover="数媒论坛">数媒论坛</a></li>

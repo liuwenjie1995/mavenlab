@@ -24,7 +24,7 @@
         <#list demolist as demo>
                     <div class="project" style="padding-top: 30px">
                         <div class="project__card">
-                            <a href="" class="project__image"><img src="/scanusers/images/1.jpg" width=300 height=200 alt=""></a>
+                            <a href="" class="project__image"><img src="${demo.imgurl}" width=300 height=200 alt=""></a>
                             <div class="project__detail">
                                 <h2 class="project__title"><a href="#">${demo.title}</a></h2>
                                 <small class="project__category"><a href="${demo.demourl}">${demo.username}</a></small>
@@ -32,26 +32,6 @@
                         </div>
                     </div>
         </#list>
-
-        <div class="project">
-            <div class="project__card">
-                <a href="" class="project__image"><img src="/scanusers/images/1.jpg" width=300 height=200 alt=""></a>
-                <div class="project__detail">
-                    <h2 class="project__title"><a href="#">Project Name</a></h2>
-                    <small class="project__category"><a href="#">Photography</a></small>
-                </div>
-            </div>
-        </div>
-
-        <div class="project">
-            <div class="project__card">
-                <a href="" class="project__image"><img src="/scanusers/images/2.jpg" width=300 height=200 alt=""></a>
-                <div class="project__detail">
-                    <h2 class="project__title"><a href="#">Project Name</a></h2>
-                    <small class="project__category"><a href="#">Photography</a></small>
-                </div>
-            </div>
-        </div>
 
         <div class="project" style="padding-top: 30px;">
             <div class="project__card">

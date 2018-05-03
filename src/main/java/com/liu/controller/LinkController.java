@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import com.liu.beans.Demomsg;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LinkController {
@@ -72,7 +74,8 @@ public class LinkController {
                                             String.valueOf(demo.getUserid()),
                                             username ,
                                             String.valueOf(demo.getTitle()),
-                                            "www");
+                                            "/deteail"+"?"+String.valueOf(demo.getId()),
+                                            String.valueOf(demo.getImg1()));
             demolist.add(demomsg);
         }
 
@@ -96,13 +99,23 @@ public class LinkController {
                     String.valueOf(demo.getUserid()),
                     username ,
                     String.valueOf(demo.getTitle()),
-                    "www");
+                    "/detail"+"?"+String.valueOf(demo.getId()),
+                    String.valueOf(demo.getImg1()));
             demolist.add(demomsg);
         }
 
 //        request.setAttribute("demolist",demolist);
         map.put("demolist",demolist);
         return  "/show/scanusers";
+    }
+
+
+    @RequestMapping(value = "/detail")
+    public String detail(Map<String,Object> map,@RequestParam("demoid") String demoid){
+        List<UpDemo> demolist = demoDao.finddemo(Integer.parseInt(demoid));
+        UpDemo demo = demolist.get(0);
+        map.put("demo",demo);
+        return  "/show/detail";
     }
 
 }

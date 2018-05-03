@@ -103,7 +103,6 @@
     }
 
     function uploadfImg(sendimg) {
-        alert("uploading image");
         var imgpath=null;
         var addimg =sendimg;
         data={picture:addimg};
@@ -116,7 +115,6 @@
             success:function (data) {
                 if(data["data"]!==null)
                 {
-                    alert(data["data"]);
                     imgpath =  data["data"];
                 }
             }
@@ -142,7 +140,6 @@
             success:function (data) {
                 if(data["data"]!==null)
                 {
-                    alert(data["data"]);
                     filepath =  data["data"];
                 }
             }
@@ -195,8 +192,12 @@
                 success:function (data) {
                     if(data["data"]!=null)
                     {
-                        alert(data["data"]);
-                        return data["data"];
+                        alert("上传成功,界面即将跳转");
+                        window.location.replace("/main");
+                    }
+                    else {
+                        alert("上传失败,请重新上传");
+                        location.reload();
                     }
                 }
             });

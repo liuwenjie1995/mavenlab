@@ -34,7 +34,7 @@ public class UpImgServiceImp implements UpImgService {
             dest.getParentFile().mkdir();
 
         if(ImgtoFile(imgstr,dest.getAbsolutePath()))
-            return dest.getAbsolutePath();
+            return "Path/uploadImage/"+dest.getName();
         else
             return null;
     }
@@ -56,7 +56,7 @@ public class UpImgServiceImp implements UpImgService {
 
         if (transformTofile(file,dest))
         {
-            return dest.getAbsolutePath();
+            return "Path/uploadFile/"+dest.getName();
         }
         else
             return null;

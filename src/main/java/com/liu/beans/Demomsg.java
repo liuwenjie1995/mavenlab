@@ -13,15 +13,26 @@ public class Demomsg{
     private String title;
     private String demourl;
 
+    private String imgurl;
+
     public Demomsg() {
     }
 
-    public Demomsg(String demoid, String userid, String username, String title, String demourl) {
+    public Demomsg(String demoid, String userid, String username, String title, String demourl, String imgurl) {
         this.demoid = demoid;
         this.userid = userid;
         this.username = username;
         this.title = title;
         this.demourl = demourl;
+        this.imgurl = imgurl;
+    }
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
     }
 
     public String getDemoid() {
