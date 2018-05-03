@@ -240,9 +240,9 @@
                 var u = $.trim($("#userid").val());
                 var p = $.trim($("#password").val());
 
-                if(u=="")
+                if(u==="")
                 {alert("no username")}
-                else if(p=="")
+                else if(p==="")
                 {alert("no password")}
                 else
                 {

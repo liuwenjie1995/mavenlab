@@ -16,13 +16,13 @@ import java.util.*;
 @Controller
 public class UpImgController {
     @Autowired
-    public UpImgService upservice;
+    public UpImgService up_service;
 
     @RequestMapping(value = "fileUpload.do",method = RequestMethod.POST)
     @ResponseBody
     public NorResponse<String> fileupload(MultipartFile file)
     {
-        String final_path = upservice.upload_file(file);
+        String final_path = up_service.upload_file(file);
         if(final_path==null)
              return new NorResponse< >(0,"上传文件失败",null);
         else
@@ -33,10 +33,11 @@ public class UpImgController {
     @ResponseBody
     public NorResponse<Integer> img_upload(@RequestParam Map<String,Object> params, HttpSession session)
     {
+
         String base64img = (String) params.get("picture");
         if(base64img==null)
             return new NorResponse<>(1,"上传失败,上传图片不存在",0);
-        else if(!upservice.upimage(base64img))
+        else if(!up_service.upimage(base64img))
             return new NorResponse<>(1,"上传失败,未存储到服务器",0);
         else
             return new NorResponse<>(1,"success",1);
@@ -49,6 +50,12 @@ public class UpImgController {
         String userid = (String) session.getAttribute("userid");
         String[] images = (String[])params.get("images");
         String file = (String)params.get("file");
+        int demoid = 1;
+        if(images!=null)
+            for (String imgurl:images)
+            {}
+
+
         return new NorResponse<>(0,"保存数据库失败",null);
     }
 

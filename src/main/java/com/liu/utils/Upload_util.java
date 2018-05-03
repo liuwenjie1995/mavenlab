@@ -1,5 +1,6 @@
 package com.liu.utils;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
 
@@ -9,7 +10,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
 
-public class uploaderutils {
+public class Upload_util {
+
     public static String get_now_time() {
         String time;
         Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
@@ -27,9 +29,9 @@ public class uploaderutils {
     public static String get_filepath(int mType) {
         switch (mType) {
             case 2:
-                return System.getProperty("user.dir") + "/uploadFile/";
+                return  "/uploadFile/";
             case 1:
-                return System.getProperty("user.dir") + "/uploadImage/";
+                return  "/uploadImage/";
             default:
                 return null;
         }
@@ -80,7 +82,6 @@ public class uploaderutils {
         {
             file.transferTo(dest);
             return true;
-
         }
         catch (Exception e)
         {

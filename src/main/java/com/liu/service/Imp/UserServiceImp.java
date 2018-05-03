@@ -2,16 +2,14 @@ package com.liu.service.Imp;
 
 import com.liu.beans.User;
 import com.liu.dao.UserDao;
-import com.liu.service.userService;
+import com.liu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Service("userService")
-public class userServiceImp implements userService {
+public class UserServiceImp implements UserService {
     @Autowired
     private UserDao userDao;
     @Override
@@ -27,8 +25,9 @@ public class userServiceImp implements userService {
 
     @Override
     public void logoutuser(HttpSession httpSession) {
-        httpSession.setAttribute("welcomeuser",null);
-        httpSession.setAttribute("isTeacher",null);
+        httpSession.setAttribute("username",null);
+        httpSession.setAttribute("userid",null);
+        httpSession.setAttribute("rank",null);
     }
 
     @Override

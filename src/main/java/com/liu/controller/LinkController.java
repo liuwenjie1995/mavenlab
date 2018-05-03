@@ -12,7 +12,7 @@ public class LinkController {
     public String main() { return "/main/main"; }
 
     @RequestMapping(value = "/scanusers")
-    public String scanusers() { return "show/scanusers"; }
+    public String scanusers() { return "/show/scanusers"; }
 
     @RequestMapping(value = "/stuupload" )
     public String stuupload() { return "/student/upload"; }
@@ -22,15 +22,15 @@ public class LinkController {
 
     @RequestMapping(value = "/" ,method = RequestMethod.GET)
     public String welcome() {
-        return "welcome";
+        return "/welcome";
     }
 
     @RequestMapping(value = "/login")
     public String Login()
     {
-        return "login";
+        return "/login";
     }
 
     @RequestMapping(value = "/register")
-    public String Register(){return "register";}
+    public String Register(){return "/register";}
 }

@@ -4,7 +4,7 @@ import com.liu.beans.User;
 import com.liu.model.LoginStatus;
 import com.liu.model.NorResponse;
 import com.liu.model.RegiserStatus;
-import com.liu.service.userService;
+import com.liu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -18,12 +18,12 @@ import java.util.Map;
 public class LoginController{
 
     @Autowired
-    private userService userService;
+    private UserService UserService;
 
-    @RequestMapping("/logout")
+    @RequestMapping("/logout.do")
     public String logout(HttpSession httpSession)
     {
-        userService.logoutuser(httpSession);
+        UserService.logoutuser(httpSession);
         return "/main/main";
     }
 
@@ -37,7 +37,7 @@ public class LoginController{
 
         String userid =(String)param.get("userid");
         String password= (String)param.get("password");
-        User user = userService.getuser(Integer.parseInt(userid),password);
+        User user = UserService.getuser(Integer.parseInt(userid),password);
 
         if (user!=null)
         {
@@ -68,7 +68,7 @@ public class LoginController{
         {
             rank = Integer.parseInt((String) params.get("rank"));
         }
-        if(userService.saveuser(username,password,rank))
+        if(UserService.saveuser(username,password,rank))
         {
             session.setAttribute("username",username);
             session.setAttribute("rank",rank);
