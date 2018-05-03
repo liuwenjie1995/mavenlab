@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/scanusers/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/scanusers/css/demo.css">
     <link rel="stylesheet" href="/scanusers/css/style.css">
+
     <!--[if IE]>
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
@@ -19,6 +20,19 @@
 
     <h2 class="section-title">Demo 1</h2>
     <div class="project-list">
+
+        <#list demolist as demo>
+                    <div class="project" style="padding-top: 30px">
+                        <div class="project__card">
+                            <a href="" class="project__image"><img src="/scanusers/images/1.jpg" width=300 height=200 alt=""></a>
+                            <div class="project__detail">
+                                <h2 class="project__title"><a href="#">${demo.title}</a></h2>
+                                <small class="project__category"><a href="${demo.demourl}">${demo.username}</a></small>
+                            </div>
+                        </div>
+                    </div>
+        </#list>
+
         <div class="project">
             <div class="project__card">
                 <a href="" class="project__image"><img src="/scanusers/images/1.jpg" width=300 height=200 alt=""></a>
@@ -49,9 +63,9 @@
             </div>
         </div>
 
-        <div class="project">
-            <div class="project__card">
-                <a href="" class="project__image"><img src="/scanusers/images/2.jpg" width=300 height=200 alt=""></a>
+        <div class="project" style="padding-top: 30px">
+            <div class="project__card" >
+                <a href="" class="project__image" ><img src="/scanusers/images/2.jpg" width=300 height=200 alt=""></a>
                 <div class="project__detail">
                     <h2 class="project__title"><a href="#">Project Name</a></h2>
                     <small class="project__category"><a href="#">Photography</a></small>

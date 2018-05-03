@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class Upload_util {
 
@@ -88,6 +89,20 @@ public class Upload_util {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static String getlaststr(String content)
+    {
+        String laststr = "";
+         content = content;
+        if (Pattern.matches(".*png.*",content))
+            laststr = "png";
+        else if (Pattern.matches(".*jpg.*",content))
+            laststr = "jpg";
+        else if (Pattern.matches(".*jpeg.*",content))
+            laststr = "jpeg";
+
+        return laststr;
     }
 
 }

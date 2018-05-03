@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static com.liu.utils.Upload_util.*;
 
@@ -19,18 +20,23 @@ public class UpImgServiceImp implements UpImgService {
     public String mParentPath;
 
     @Override
-    public boolean upimage(String imgstr) {
-        System.out.print(mParentPath);
+    public String upimage(String imgstr) {
+        String laststr = "";
+
+        laststr = Upload_util.getlaststr(imgstr.split(",")[0]);
+
         int    typeflag = 1;
         String time     = get_now_time();
         String path     = get_filepath(typeflag);
-        File dest       = new File(mParentPath+path+"stuup_"+time+ UUID.randomUUID()+"."+"jpg");
+        File dest       = new File(mParentPath+path+"stuup_"+time+ UUID.randomUUID()+"."+laststr);
 
         if(!dest.getParentFile().exists())
             dest.getParentFile().mkdir();
 
-        return ImgtoFile(imgstr,dest.getAbsolutePath());
-
+        if(ImgtoFile(imgstr,dest.getAbsolutePath()))
+            return dest.getAbsolutePath();
+        else
+            return null;
     }
 
     @Override
@@ -43,14 +49,15 @@ public class UpImgServiceImp implements UpImgService {
 
         if(file.isEmpty()||typeflag==0)
             return null;
-
         File dest = new File(mParentPath+path+"stuup_"+time+UUID.randomUUID()+"."+filetype);
 
         if(!dest.getParentFile().exists())
             dest.getParentFile().mkdir();
 
         if (transformTofile(file,dest))
+        {
             return dest.getAbsolutePath();
+        }
         else
             return null;
     }
