@@ -24,9 +24,9 @@
         <#list demolist as demo>
                     <div class="project" style="padding-top: 30px">
                         <div class="project__card">
-                            <a href="" class="project__image"><img src="${demo.imgurl}" width=300 height=200 alt=""></a>
+                            <a href="${demo.demourl}" class="project__image"><img src="${demo.imgurl}" width=300 height=200 alt=""></a>
                             <div class="project__detail">
-                                <h2 class="project__title"><a href="#">${demo.title}</a></h2>
+                                <h2 class="project__title"><a href="${demo.demourl}">${demo.title}</a></h2>
                                 <small class="project__category"><a href="${demo.demourl}">${demo.username}</a></small>
                             </div>
                         </div>
@@ -71,6 +71,15 @@
             shine: true,
             sensitivity: 20,
         });
+    });
+
+    $(document).ready(function(){
+        $(".project__card").click(
+
+            function () {
+                $(this).find("a")[0].click();
+            }
+        );
     });
 </script>
 

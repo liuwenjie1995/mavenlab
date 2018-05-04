@@ -5,10 +5,17 @@ import com.liu.dao.DemoDao;
 import com.liu.model.NorResponse;
 import com.liu.service.UpImgService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.*;
 /**
  * @author liuwenjie 
@@ -106,4 +113,28 @@ public class UpImgController {
         return new NorResponse<>(0,"保存数据库成功","1");
     }
 
-}
+    @Value("${cbs.filesPath}")
+    public String mParentPath;
+
+    @RequestMapping(value = "/download.do")
+    @ResponseBody
+    public ResponseEntity<InputStreamResource> downloadFile(@RequestParam Map<String,Object> params)
+            throws IOException {
+        String filePath = (String) params.get("filepath");
+        filePath = mParentPath+filePath.substring(5);
+        FileSystemResource file = new FileSystemResource(filePath);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getFilename()));
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentLength(file.contentLength())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(file.getInputStream()));
+    }
+
+    }

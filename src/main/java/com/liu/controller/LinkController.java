@@ -74,7 +74,7 @@ public class LinkController {
                                             String.valueOf(demo.getUserid()),
                                             username ,
                                             String.valueOf(demo.getTitle()),
-                                            "/deteail"+"?"+String.valueOf(demo.getId()),
+                                            "/deteail"+"?demoid="+String.valueOf(demo.getId()),
                                             String.valueOf(demo.getImg1()));
             demolist.add(demomsg);
         }
@@ -99,7 +99,7 @@ public class LinkController {
                     String.valueOf(demo.getUserid()),
                     username ,
                     String.valueOf(demo.getTitle()),
-                    "/detail"+"?"+String.valueOf(demo.getId()),
+                    "/detail"+"?demoid="+String.valueOf(demo.getId()),
                     String.valueOf(demo.getImg1()));
             demolist.add(demomsg);
         }
